@@ -72,6 +72,15 @@ func setupRouter() *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"text": "updated"})
 	})
 
+	r.POST("/start_session", func(c *gin.Context) {
+		// todo make sure CORS is ok
+		// read in the request
+		// get the quiz from Mongo
+		// wait for connections from students - launch some internal function. maybe return the session address? 
+		// so that the frontend automatically switches to monitor quiz mode?
+		c.JSON(http.StatusOK, gin.H{"text": "updated"})
+	})
+
 	r.GET("/socket", func(c *gin.Context) {
 		conn, _, _, err := ws.UpgradeHTTP(c.Request, c.Writer)
 		if err != nil {

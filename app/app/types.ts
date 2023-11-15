@@ -1,10 +1,12 @@
 export type LeaderBoardStatus = {
 
+  quizName:string
   rows:LeaderBoardRow[]
 };
 
 export type LeaderBoardRow = {
   studentId: string,
+  studenNick:string,
   score:number,
 }
 
