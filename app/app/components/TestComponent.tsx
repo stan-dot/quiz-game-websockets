@@ -12,8 +12,8 @@ export const TestSocketComponent = () => {
   }, []);
 
   const socketInitializer = async () => {
-    await fetch("/api/socket");
-    socket = io();
+    // await fetch("/api/socket");
+    socket = io("http://localhost:3000/api/socket");
 
     socket.on("connect", () => {
       console.log("connected");
