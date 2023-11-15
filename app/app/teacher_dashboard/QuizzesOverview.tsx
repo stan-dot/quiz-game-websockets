@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import { Quiz } from "../types";
+import { QuizData } from "../types";
 import { useQuizzesHook } from "./useQuizzesHook";
 import QuizTable from "./QuizTable";
 
 function QuizzesOverview() {
-  const quizzes: Quiz[] = useQuizzesHook();
+  const quizzes: QuizData[] = useQuizzesHook();
   return (
     <div>
       QuizzesOverview

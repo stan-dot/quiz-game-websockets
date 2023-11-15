@@ -1,7 +1,7 @@
 import React from "react";
-import { Quiz } from "../types";
+import { QuizData } from "../types";
 
-function QuizCard({ quiz }: { quiz: Quiz }) {
+function QuizCard({ quiz }: { quiz: QuizData }) {
   return (
     <div>
       <p>{quiz.title}</p>

@@ -1,10 +1,10 @@
 import React from "react";
-import { Quiz } from "../types";
+import { QuizData } from "../types";
 import { redirect } from "next/navigation";
 
-function QuizTable({ quizzes }: { quizzes: Quiz[] }) {
+function QuizTable({ quizzes }: { quizzes: QuizData[] }) {
   const total = quizzes.reduce(
-    (p: number, c: Quiz) => p + c.questions.length,
+    (p: number, c: QuizData) => p + c.questions.length,
     0,
   );
   return (

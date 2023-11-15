@@ -24,6 +24,20 @@ type Question struct {
 	CorrectAnswer int8     `json:"correct_answer"`
 }
 
+type Answer struct {
+	QuizID           string `json:"quiz_id"`
+	TimeMicroseconds int32  `json:"time"`
+	AnswerNumber     int8   `json:"answer"`
+}
+
+// todo student profile to keep the streak
+
+type StudentProfile struct {
+	StudentId string `json:"student_id"`
+	Streak    int8   `json:"streak"`
+	Points    int32  `json:"points"`
+}
+
 type Quiz struct {
 	Title     string     `json:"title"`
 	Questions []Question `json:"questions"`
@@ -76,7 +90,7 @@ func setupRouter() *gin.Engine {
 		// todo make sure CORS is ok
 		// read in the request
 		// get the quiz from Mongo
-		// wait for connections from students - launch some internal function. maybe return the session address? 
+		// wait for connections from students - launch some internal function. maybe return the session address?
 		// so that the frontend automatically switches to monitor quiz mode?
 		c.JSON(http.StatusOK, gin.H{"text": "updated"})
 	})

@@ -1,4 +1,4 @@
-import { Quiz } from "@/app/types";
+import { QuizData } from "@/app/types";
 import { redirect } from "next/navigation";
 import React from "react";
 import QuizCard from "../../QuizCard";
@@ -15,7 +15,7 @@ export async function getServerSideProps() {
   };
 }
 
-function QuizPage({ data }: { data: Quiz }) {
+function QuizPage({ data }: { data: QuizData }) {
   return (
     <div>
       <button

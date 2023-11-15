@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { StudentSocketFacade } from "./StudentSocketsFacade";
+import { StudentSocketFacade } from "./StudentSocketFacade";
 
 // todo check web dev simplified for different ways to do this
 // todo ask chat how to do that best in terms of this component
@@ -65,5 +65,3 @@ function QuizPanel(
 }
 
 export default QuizPanel;
-
-

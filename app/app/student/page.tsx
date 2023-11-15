@@ -1,6 +1,6 @@
 import React from "react";
 import QuizPanel from "./QuizPanel";
-import { StudentSocketFacade } from "./StudentSocketsFacade";
+import { StudentSocketFacade } from "./StudentSocketFacade";
 
 // todo must read the query as ID, from the params
 function page() {
