@@ -1,4 +1,8 @@
 
+## style
+- [ ] ask about color scheme and buttons shape, etc
+- [ ] should be pretty
+
 ## backedn
 - [ ] write goroutines for different socket connections
 - [ ] check go sockets scalability vertically
