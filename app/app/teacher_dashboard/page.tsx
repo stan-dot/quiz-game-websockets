@@ -1,8 +1,10 @@
 import React from "react";
 import QuizzesOverview from "./QuizzesOverview";
 
-// todo consider what's the bestway to position the new quiz panel. possibly some import option
-// look into kahoot export formats
+// todo modal for new quiz panel. 
+
+// todo import option
+// https://support.kahoot.com/hc/en-us/community/posts/360026447594-Exporting-Kahoot-quizzes
 function page() {
   return (
     <div>

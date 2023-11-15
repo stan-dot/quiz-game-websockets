@@ -2,6 +2,7 @@
 ## style
 - [ ] ask about color scheme and buttons shape, etc
 - [ ] should be pretty
+- [ ] mongodb https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/ - already in mflix
 
 ## backedn
 - [ ] write goroutines for different socket connections

@@ -1,6 +1,5 @@
 import { Socket, io } from "socket.io-client";
 
-// todo find the functions on close (destrucors) - to close resources before closing the app
 export class TeacherSocketFacade{
   private socketClient:Socket;
   private teacherId:string

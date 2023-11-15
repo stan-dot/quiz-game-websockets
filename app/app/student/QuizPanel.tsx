@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { StudentSocketFacade } from "./StudentSocketFacade";
 
 // todo check web dev simplified for different ways to do this
@@ -11,12 +11,14 @@ export type QuizState =
   | "leaderboard"
   | "finished";
 
-// todo setup the socket. maybe inside hooks would be better
 function QuizPanel(
   { socketUrl, studentId }: { socketUrl: string; studentId: string },
 ) {
-  // todo should either memoize or do it in the page component
-  const facade = new StudentSocketFacade(socketUrl, studentId);
+  const facade = new StudentSocketFacade(socketUrl, studentId); // yeah do it herre but in the use hook
+
+  const socketFacade = useMemo(() => {
+    return new StudentSocketFacade(socketUrl, studentId);
+  }, [socketUrl, studentId]); // Dependencies on which the instance should be recreated
 
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [text, setText] = useState<string>("");
@@ -29,6 +31,10 @@ function QuizPanel(
     ).catch((e) => {
       console.error(" failed to fetch: ", e);
     });
+    return () => {
+      // todo important to close
+      ws?.close();
+    };
   }, []);
 
   useEffect(() => {

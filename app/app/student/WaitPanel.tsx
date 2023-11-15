@@ -1,7 +1,8 @@
 
 import React from 'react'
 
-// todo some cool animation, possibly as a gif
+// todo implement react spinners
+// https://www.npmjs.com/package/react-spinners
 
 // also a funny text
 function WaitPanel() {

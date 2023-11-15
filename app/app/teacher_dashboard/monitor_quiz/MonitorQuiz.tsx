@@ -4,6 +4,7 @@ import React from "react";
 import { TeacherSocketFacade } from "../TeacherSocketsFacade";
 
 // todo ask chat about the best way to handle downstream state - whether in the smaller component or higher up
+// minimal prop surface area better
 type QuizStateTeacherEnd = {
   data: QuizData;
   currentQuestion: number;
@@ -12,6 +13,7 @@ type QuizStateTeacherEnd = {
   };
 };
 
+// so it looks that if individual student lookups arent' that important, a list is better fair enough
 const exampleState: QuizStateTeacherEnd = {
   data: {
     title: "",
