@@ -3,14 +3,10 @@ import { QuizData } from "@/app/types";
 import React from "react";
 import { TeacherSocketFacade } from "../TeacherSocketsFacade";
 
-// todo ask chat about the best way to handle downstream state - whether in the smaller component or higher up
-// minimal prop surface area better
 type QuizStateTeacherEnd = {
   data: QuizData;
   currentQuestion: number;
-  answeredStatus: {
-    [studentId: string]: boolean;
-  };
+  studentAnswerStatus: { studentId: string; done: boolean }[];
 };
 
 // so it looks that if individual student lookups arent' that important, a list is better fair enough
@@ -21,14 +17,12 @@ const exampleState: QuizStateTeacherEnd = {
     questions: [],
   },
   currentQuestion: 0,
-  answeredStatus: {},
+  studentAnswerStatus: [],
 };
 
-// todo ask chat if dictionary or list better here
-function MonitorQuiz({ socketFacade }: { socketFacade: TeacherSocketFacade }) {
-  // todo these must change very dynamically
-  const statuses = Object.getOwnPropertyNames(exampleState.answeredStatus);
-  const doneIdsArray = statuses.filter((id) => exampleState.answeredStatus[id]);
+function MonitorQuiz() {
+  const socketFacade = new TeacherSocketFacade("http://localhost:8000", "4");
+
   return (
     <div>
       MonitorQuiz
@@ -38,10 +32,11 @@ function MonitorQuiz({ socketFacade }: { socketFacade: TeacherSocketFacade }) {
       </div>
       <div id="studentTimingTable">
         <div>
-          total students = {statuses.length}
+          total students = {exampleState.studentAnswerStatus.length}
         </div>
         <div>
-          done students = {doneIdsArray.length}
+          done students ={" "}
+          {exampleState.studentAnswerStatus.filter((a) => a.done).length}
         </div>
       </div>
       <div id="controlPanel">

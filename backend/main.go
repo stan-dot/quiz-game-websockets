@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"log"
+	"math"
 	"net/http"
 	"sync"
 
@@ -23,30 +25,26 @@ type Question struct {
 	Answers       []string `json:"answers"`
 	CorrectAnswer int8     `json:"correct_answer"`
 }
-
+type Quiz struct {
+	Title     string     `json:"title"`
+	Questions []Question `json:"questions"`
+}
 type Answer struct {
 	QuizID           string `json:"quiz_id"`
 	TimeMicroseconds int32  `json:"time"`
 	AnswerNumber     int8   `json:"answer"`
+	ParticipantID    string `json:"participant_id"`
 }
-
-// todo student profile to keep the streak
 
 type StudentProfile struct {
 	StudentId string `json:"student_id"`
-	Streak    int8   `json:"streak"`
 	Points    int32  `json:"points"`
-}
-
-type Quiz struct {
-	Title     string     `json:"title"`
-	Questions []Question `json:"questions"`
 }
 
 var document = Document{
 	Title: "Test document",
 	Body:  "Hello world\n here is a second line",
-} // todo hack only one document now
+}
 
 var documentMutex sync.Mutex
 var documentCond = sync.NewCond(&documentMutex)
@@ -82,12 +80,11 @@ func setupRouter() *gin.Engine {
 	})
 
 	r.GET("/handler", func(c *gin.Context) {
-		// todo make sure CORS is ok
 		c.JSON(http.StatusOK, gin.H{"text": "updated"})
 	})
 
 	r.POST("/start_session", func(c *gin.Context) {
-		// todo make sure CORS is ok
+		// make sure CORS is ok
 		// read in the request
 		// get the quiz from Mongo
 		// wait for connections from students - launch some internal function. maybe return the session address?
@@ -160,4 +157,14 @@ func main() {
 	r := setupRouter()
 	// Listen and Server in 0.0.0.0:8000
 	r.Run(":8000")
+}
+func processQuiz(quiz Quiz, answers []Answer) {
+	// Example: let's assume all questions have the same timer and points
+	questionTimer := int32(30) // 30 seconds for each question
+	pointsPossible := 1000
+
+	for _, answer := range answers {
+		score := calculateScore(answer.TimeMicroseconds, questionTimer, pointsPossible)
+		fmt.Printf("Participant %s scored %d on question %d\n", answer.ParticipantID, score, answer.AnswerNumber)
+	}
 }

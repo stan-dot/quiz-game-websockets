@@ -1,5 +1,4 @@
 export type LeaderBoardStatus = {
-
   quizName:string
   rows:LeaderBoardRow[]
 };
@@ -10,22 +9,33 @@ export type LeaderBoardRow = {
   score:number,
 }
 
-// todo many types are downstream from what backend enforces
-// todo check how to ensure type safety between go and typescript
-
 export type QuizData = {
   title: string,
   _id:string,
   questions:Question[]
 }
 
-
 export type Question = {
   text: string, 
   answers: string[]
 }
+
 export type StudentAnswer = {
   choice: number;
   studentId: string;
   timeMiliseconds: number;
 }
+
+export type ClassData = {
+  students: Student[],
+  cohortId: string,
+  quizzesDone_Ids:string[]
+}
+
+export type Student = {
+  name: string,
+  email: string,
+  nick:string
+
+}
+
