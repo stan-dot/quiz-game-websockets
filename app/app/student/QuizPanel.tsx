@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
-import { StudentSocketFacade } from "./StudentSocketsFacade";
 import { useSearchParams } from "next/navigation";
-import StateSwitch from "./StateSwitch";
-import WaitForStartScreen from "./WaitForStartScreen";
+import { useEffect, useMemo, useState } from "react";
+import LeaderBoardPanel from "./LeaderBoardPanel";
 import QuestionPanel from "./QuestionPanel";
+import { StudentSocketFacade } from "./StudentSocketsFacade";
+import WaitForStartScreen from "./WaitForStartScreen";
+import WaitForOtherAnswers from "./WaitForOtherAnswers";
+import { useLeaderboardResults } from "@/hooks/useLeaderboardResults";
 
 export type QuizState =
   | "wait for start"
@@ -14,7 +16,6 @@ export type QuizState =
   | "finished";
 
 function QuizPanel(
-  // { socketUrl, studentId }: { socketUrl: string; studentId: string },
 ) {
   const params = useSearchParams();
   const studentId = params.get("student_id") ?? "1";
@@ -55,6 +56,8 @@ function QuizPanel(
     return <p>error</p>;
   }
 
+  const leaderBoard = useLeaderboardResults('4');
+
   let componentToRender;
   switch (quizState) {
     case "wait for start":
@@ -67,11 +70,21 @@ function QuizPanel(
             text: "",
             answers: [],
           }}
-          facade={undefined}
+          facade={socketFacade}
         />
       );
       break;
       // ... other cases
+    case "leaderboard":
+      componentToRender = leaderBoard ? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={studentId} />: <p>no leaderBoard</p>
+      break;
+    case "waiting for others' answers":
+      componentToRender = <WaitForOtherAnswers />
+      break;
+    case "finished":
+      componentToRender = leaderBoard? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={"4"} />:<p>no leaderBoard</p>
+      break;
+
   }
 
   return (

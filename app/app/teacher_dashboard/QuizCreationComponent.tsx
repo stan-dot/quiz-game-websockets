@@ -6,14 +6,14 @@ export type Question = {
   correctAnswer: number; // Index of the correct answer
 };
 
-export type QuizData = {
+export type QuizInit = {
   title: string;
   _id: string;
   questions: Question[];
 };
 
 type QuizCreationProps = {
-  addNewQuiz: (quiz: QuizData) => void;
+  addNewQuiz: (quiz: QuizInit) => void;
 };
 
 const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
@@ -59,7 +59,7 @@ const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    const newQuiz: QuizData = {
+    const newQuiz: QuizInit = {
       title: quizTitle,
       _id: Date.now().toString(), // Temporary ID generation logic
       questions,

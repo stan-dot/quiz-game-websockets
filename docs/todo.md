@@ -2,6 +2,7 @@
 # Frontend
 
 ## style
+- [ ] mobile first
 - [ ] fix new quiz creation colors
 - [ ] ask about color scheme and buttons shape, etc
 - [ ] should be pretty

@@ -18,6 +18,7 @@ export type QuizData = {
 export type Question = {
   text: string, 
   answers: string[]
+  correctNumber:number
 }
 
 export type StudentAnswer = {
