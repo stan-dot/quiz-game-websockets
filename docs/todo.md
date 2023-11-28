@@ -1,11 +1,14 @@
+## questions
+- [ ] what devices are the teachers and students using? (East Africa phone market)
+- [x] ask about color scheme and buttons shape, etc
+
 # Frontend
+- [x] add more callbacks
 
 ## style
 - [ ] mobile first
 - [ ] fix new quiz creation colors
-- [ ] ask about color scheme and buttons shape, etc
-- [ ] should be pretty
-- [ ] add more callbacks
+- [ ] should be pretty - using Directed assets from hoole drive
 
 # Backend
 ## Mongo backend

@@ -23,6 +23,12 @@ function Navbar() {
         >
           Student
         </Link>
+        <Link
+          className="bg-secondary hover:bg-primary hover:text-white rounded px-4 py-2"
+          href="/scripted-student"
+        >
+          scripted interaction for testing
+        </Link>
       </nav>
     </div>
   );

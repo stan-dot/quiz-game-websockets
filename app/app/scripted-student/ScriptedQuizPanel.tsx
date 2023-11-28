@@ -11,6 +11,8 @@ import LeaderBoardPanel from "../student/LeaderBoardPanel";
 import QuestionPanel from "../student/QuestionPanel";
 import WaitForOtherAnswers from "../student/WaitForOtherAnswers";
 import WaitForStartScreen from "../student/WaitForStartScreen";
+import { useQuiz } from "@/hooks/useQuizById";
+import { quizzes } from "@/data/mockQuizzes";
 
 type QuizState =
   | "wait for start"
@@ -34,18 +36,25 @@ function ScriptedQuizPanel() {
   // todo hardcoded bits
   const studentId = "1";
   const socketUrl = "http://localhost:8000";
-  const quizId = "123";
+  const quizId = "4";
   console.log("id , socket: ", studentId, socketUrl);
-  const [quizState, setQuizState] = useState<QuizState>("wait for start");
+  const testingState: QuizState = "active question";
+  const [quizState, setQuizState] = useState<QuizState>(testingState);
   const [lastLeaderboard, setLastLeaderboard] = useState<LeaderBoardStatus>(
     defaultLeaderboard,
   );
-  const [lastQuestion, setLastQuestion] = useState<Question>(defaultQuestion);
+  const [lastQuestion, setLastQuestion] = useState<Question>(
+    quizzes[0].questions[0],
+  );
 
+  // todo this is temporary
+  const quiz = useQuiz(quizId);
   const socketFacade = useMemo(() => {
     const callbacks: SocketCallbackOptions = {
       onNewQuiz: function (): void {
         setQuizState("wait for start");
+        // todo another thing
+        setLastQuestion(quiz ? quiz.questions[0] : defaultQuestion);
       },
       onLeaderBoard: (l) => {
         setLastLeaderboard(l);

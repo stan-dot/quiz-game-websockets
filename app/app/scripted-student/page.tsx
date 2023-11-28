@@ -7,7 +7,9 @@ function page() {
   // click end quiz
   return (
     <div>
-      page
+      <h2 className="text-4xl font-bold">
+        Testing panel
+      </h2>
       <ScriptedQuizPanel />
     </div>
   );

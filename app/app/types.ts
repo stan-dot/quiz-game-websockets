@@ -7,6 +7,7 @@ export type QuizData = {
 
 export type Question = {
   text: string;
+  imageUrl?: string;
   answers: string[];
   correctNumber: number;
 };

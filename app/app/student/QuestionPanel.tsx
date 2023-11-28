@@ -1,7 +1,9 @@
 import React from "react";
 import { Question } from "../types";
 import { StudentSocketFacade } from "./StudentSocketsFacade";
+import Image from "next/image";
 
+const defaultImageUrl = "/placeholder-image-square.jpg";
 const fourColors: string[] = ["#990000", "#009900", "#000099", "#B0B000"];
 
 function QuestionPanel(
@@ -12,16 +14,24 @@ function QuestionPanel(
 ) {
   const startTime = new Date();
   return (
-    <div className="w-full">
+    <div className=" flex flex-col">
       QuestionPanel
-      <p>
+      <div id="image">
+        <Image
+          src={question.imageUrl ?? defaultImageUrl}
+          alt={"Question image"}
+          height={200}
+          width={200}
+        />
+      </div>
+      <p className="font-bold">
         {question.text}
       </p>
-      <div>
+      <div className="w-full h-full grid grid-cols-2">
         {question.answers.map((a, i) => {
           return (
             <button
-              className="w-1/2 h-1/2"
+              className="w-[50vw] h-[50vh] m-0"
               style={{ backgroundColor: fourColors[i] }}
               key={i}
               onClick={() => answerCallback(startTime, i)}
