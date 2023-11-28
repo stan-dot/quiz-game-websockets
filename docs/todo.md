@@ -12,6 +12,10 @@
 - [ ] on the general process of migrating from a google spreadsheets to a normal database - there's a track record on that
 - [ ] check go sockets scalability vertically
 
+## warmup priority todo
+- [ ] fix the go and the sockets responses
+- [ ] make sure that the scripted flow works as intended
+
 # Frontend
 - [x] add more callbacks
 - [ ] mobile first - maybe some emulator to see better? the window is suboptimal
