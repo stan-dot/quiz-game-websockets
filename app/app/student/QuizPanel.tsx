@@ -15,16 +15,15 @@ export type QuizState =
   | "leaderboard"
   | "finished";
 
-function QuizPanel(
-) {
+function QuizPanel() {
   const params = useSearchParams();
   const studentId = params.get("student_id") ?? "1";
   const socketUrl = params.get("socket_url") ?? "http://localhost:8000";
   console.log("id , socket: ", studentId, socketUrl);
-  const facade = new StudentSocketFacade(socketUrl, studentId); // yeah do it herre but in the use hook
+  const facade = new StudentSocketFacade({ socketUrl, studentId }); // yeah do it herre but in the use hook
 
   const socketFacade = useMemo(() => {
-    return new StudentSocketFacade(socketUrl, studentId);
+    return new StudentSocketFacade({ socketUrl, studentId });
   }, [socketUrl, studentId]); // Dependencies on which the instance should be recreated
 
   const [ws, setWs] = useState<WebSocket | null>(null);
@@ -56,7 +55,7 @@ function QuizPanel(
     return <p>error</p>;
   }
 
-  const leaderBoard = useLeaderboardResults('4');
+  const leaderBoard = useLeaderboardResults("4");
 
   let componentToRender;
   switch (quizState) {
@@ -76,15 +75,18 @@ function QuizPanel(
       break;
       // ... other cases
     case "leaderboard":
-      componentToRender = leaderBoard ? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={studentId} />: <p>no leaderBoard</p>
+      componentToRender = leaderBoard
+        ? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={studentId} />
+        : <p>no leaderBoard</p>;
       break;
     case "waiting for others' answers":
-      componentToRender = <WaitForOtherAnswers />
+      componentToRender = <WaitForOtherAnswers />;
       break;
     case "finished":
-      componentToRender = leaderBoard? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={"4"} />:<p>no leaderBoard</p>
+      componentToRender = leaderBoard
+        ? <LeaderBoardPanel leaderBoard={leaderBoard} studentId={"4"} />
+        : <p>no leaderBoard</p>;
       break;
-
   }
 
   return (
@@ -105,6 +107,9 @@ function QuizPanel(
         }}
         value={text}
       />
+      <div>
+        {componentToRender}
+      </div>
     </div>
   );
 }

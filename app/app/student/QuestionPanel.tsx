@@ -3,7 +3,10 @@ import { Question } from "../types";
 import { StudentSocketFacade } from "./StudentSocketsFacade";
 
 function QuestionPanel(
-  { question, facade }: { question: Question; facade: StudentSocketFacade },
+  { question, answerCallback }: {
+    question: Question;
+    answerCallback: (time: Date, answerNumber: number) => void;
+  },
 ) {
   const startTime = new Date();
   return (
@@ -17,7 +20,7 @@ function QuestionPanel(
           return (
             <button
               key={i}
-              onClick={() => facade.sendAnswer(startTime, i)}
+              onClick={() => answerCallback(startTime, i)}
             >
               {a}
             </button>

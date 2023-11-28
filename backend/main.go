@@ -15,30 +15,37 @@ import (
 	"github.com/gobwas/ws/wsutil"
 )
 
-type Document struct {
-	Title string `json:"title"`
-	Body  string `json:"body"`
-}
-
 type Question struct {
 	Text          string   `json:"text"`
 	Answers       []string `json:"answers"`
 	CorrectAnswer int8     `json:"correct_answer"`
 }
+
 type Quiz struct {
 	Title     string     `json:"title"`
 	Questions []Question `json:"questions"`
 }
+
 type Answer struct {
-	QuizID           string `json:"quiz_id"`
-	TimeMicroseconds int32  `json:"time"`
-	AnswerNumber     int8   `json:"answer"`
-	ParticipantID    string `json:"participant_id"`
+	QuizID          string `json:"quiz_id"`
+	TimeMiliseconds int32  `json:"time_miliseconds"`
+	AnswerNumber    int8   `json:"answer"`
+	StudentID       string `json:"student_id"`
 }
 
-type StudentProfile struct {
+type LeaderBoardStatus struct {
+	Profiles []LeaderBoardRow `json:"profiles"`
+	QuizName string           `json:"quiz_name"`
+}
+
+type LeaderBoardRow struct {
 	StudentId string `json:"student_id"`
 	Points    int32  `json:"points"`
+}
+
+type Document struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
 }
 
 var document = Document{
@@ -158,13 +165,15 @@ func main() {
 	// Listen and Server in 0.0.0.0:8000
 	r.Run(":8000")
 }
+
 func processQuiz(quiz Quiz, answers []Answer) {
 	// Example: let's assume all questions have the same timer and points
 	questionTimer := int32(30) // 30 seconds for each question
+
 	pointsPossible := 1000
 
 	for _, answer := range answers {
-		score := calculateScore(answer.TimeMicroseconds, questionTimer, pointsPossible)
-		fmt.Printf("Participant %s scored %d on question %d\n", answer.ParticipantID, score, answer.AnswerNumber)
+		score := calculateScore(answer.TimeMiliseconds, questionTimer, pointsPossible)
+		fmt.Printf("Participant %s scored %d on question %d\n", answer.StudentID, score, answer.AnswerNumber)
 	}
 }
