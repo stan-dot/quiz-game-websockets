@@ -7,6 +7,7 @@ type QuizStateTeacherEnd = {
   data: QuizData;
   currentQuestion: number;
   studentAnswerStatus: { studentId: string; done: boolean }[];
+  // todo that must cooperate with the backend server
 };
 
 // so it looks that if individual student lookups arent' that important, a list is better fair enough

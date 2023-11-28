@@ -6,6 +6,9 @@ function QuizCard({ quiz }: { quiz: QuizData }) {
     <div>
       <p>{quiz.title}</p>
       <p>Number of questions: {quiz.questions.length}</p>
+      #questionsDisplay.m-2.p-2
+
+
     </div>
   );
 }

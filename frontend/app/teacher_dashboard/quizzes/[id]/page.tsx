@@ -1,4 +1,5 @@
 import { QuizData } from "@/app/types";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 import QuizCard from "../../QuizCard";
@@ -16,15 +17,12 @@ import QuizCard from "../../QuizCard";
 // }
 
 function QuizPage({ data }: { data: QuizData }) {
+  console.log("data: ", data);
   return (
     <div>
-      <button
-        onClick={() => {
-          redirect("/teacher_dashboard");
-        }}
-      >
+    <Link href={"/teacher_dashboard"}>
         go back
-      </button>
+    </Link>
       <QuizCard quiz={data} />
     </div>
   );

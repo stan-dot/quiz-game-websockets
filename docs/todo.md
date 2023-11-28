@@ -4,6 +4,7 @@
 - [ ] server - on prem (raspberry?) or cloud. where is the current one deployed?
 - [ ] permissions - can all teachers modify all quizzes?
 - [ ] is it ok if the results can only be viewed remotely?
+- [ ] class functionality - only see class and list of students, tick who is ready and send quiz?
 
 ## research
 - [ ] how to put the results into Google Sheets programatically?
@@ -16,13 +17,13 @@
 - [ ] mobile first
 - [ ] fix new quiz creation
 - [ ] should be pretty - using Directed assets from hoole drive
+- [ ] change the getServerProps for the quiz thing
 
 # Backend
 ## Mongo backend
 - [ ] mongodb https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/ - already in mflix
-- [ ] add quiz representation
-- [ ] connect to Mongo with hooks
-- [ ] add Prisma, that should be the simplest thing
+- [x] add quiz representation
+- [ ] connect to Mongo via Prisma with hooks
 
 ## go backend
 - [ ] sortout the go path issue

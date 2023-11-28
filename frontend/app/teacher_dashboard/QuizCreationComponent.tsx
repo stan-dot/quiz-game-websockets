@@ -65,7 +65,7 @@ const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="text-black">
+    <form onSubmit={handleSubmit} className="text-black m-2 p-4">
       <div id="titleFieldWrapper" className="m-2 p-2 flex flex-col">
         <label htmlFor="quizTitle">quiz title</label>
         <input
