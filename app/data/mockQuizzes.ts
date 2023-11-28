@@ -8,7 +8,7 @@ const difficultQuestion: Question = {
     "cwerwearewar",
     "dadfsdafewarewah",
   ],
-  correctNumber: 0,
+  correctAnswer: 0,
 };
 
 const quiz4: QuizData = {
@@ -17,4 +17,4 @@ const quiz4: QuizData = {
   questions: [difficultQuestion],
 };
 
-export const quizzes: QuizData[] = [quiz4];
+export const mockQuizzes: QuizData[] = [quiz4];

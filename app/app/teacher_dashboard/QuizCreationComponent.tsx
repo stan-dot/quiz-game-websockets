@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-
-export type Question = {
-  text: string;
-  answers: string[];
-  correctAnswer: number; // Index of the correct answer
-};
+import { Question } from "../types";
 
 export type QuizInit = {
   title: string;
@@ -70,13 +65,17 @@ const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Quiz Title"
-        value={quizTitle}
-        onChange={(e) => setQuizTitle(e.target.value)}
-      />
+    <form onSubmit={handleSubmit} className="text-black">
+      <div id="titleFieldWrapper" className="m-2 p-2 flex flex-col">
+        <label htmlFor="quizTitle">quiz title</label>
+        <input
+          type="text"
+          placeholder="Quiz Title"
+          id="quizTitle"
+          value={quizTitle}
+          onChange={(e) => setQuizTitle(e.target.value)}
+        />
+      </div>
       <table>
         <thead>
           <tr>

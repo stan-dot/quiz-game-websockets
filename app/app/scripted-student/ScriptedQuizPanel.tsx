@@ -12,7 +12,7 @@ import QuestionPanel from "../student/QuestionPanel";
 import WaitForOtherAnswers from "../student/WaitForOtherAnswers";
 import WaitForStartScreen from "../student/WaitForStartScreen";
 import { useQuiz } from "@/hooks/useQuizById";
-import { quizzes } from "@/data/mockQuizzes";
+import { mockQuizzes } from "@/data/mockQuizzes";
 
 type QuizState =
   | "wait for start"
@@ -29,7 +29,7 @@ const defaultLeaderboard: LeaderBoardStatus = {
 const defaultQuestion: Question = {
   text: "Waiting for the question...",
   answers: [],
-  correctNumber: 0,
+  correctAnswer: 0,
 };
 
 function ScriptedQuizPanel() {
@@ -44,7 +44,7 @@ function ScriptedQuizPanel() {
     defaultLeaderboard,
   );
   const [lastQuestion, setLastQuestion] = useState<Question>(
-    quizzes[0].questions[0],
+    mockQuizzes[0].questions[0],
   );
 
   // todo this is temporary

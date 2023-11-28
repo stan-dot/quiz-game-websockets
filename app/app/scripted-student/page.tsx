@@ -1,5 +1,6 @@
 import React from "react";
 import ScriptedQuizPanel from "./ScriptedQuizPanel";
+import { PageHeader } from "../shared-components/PageHeader";
 
 function page() {
   // load automated quiz
@@ -7,9 +8,7 @@ function page() {
   // click end quiz
   return (
     <div>
-      <h2 className="text-4xl font-bold">
-        Testing panel
-      </h2>
+      <PageHeader text={"Testing panel"} />
       <ScriptedQuizPanel />
     </div>
   );

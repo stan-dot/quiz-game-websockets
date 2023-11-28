@@ -1,6 +1,6 @@
-import { QuizData } from '@/app/types';
-import { quizzes } from '@/data/mockQuizzes';
+import { QuizData } from "@/app/types";
+import { mockQuizzes } from "@/data/mockQuizzes";
 
-export function useQuiz(id:string):QuizData | undefined {
-  return quizzes.find(q => q._id === id);
+export function useQuiz(id: string): QuizData | undefined {
+  return mockQuizzes.find((q) => q._id === id);
 }

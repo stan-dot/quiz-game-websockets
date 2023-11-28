@@ -9,7 +9,7 @@ export type Question = {
   text: string;
   imageUrl?: string;
   answers: string[];
-  correctNumber: number;
+  correctAnswer: number;
 };
 
 export type StudentAnswer = {

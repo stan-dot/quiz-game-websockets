@@ -1,13 +1,20 @@
 ## questions
 - [ ] what devices are the teachers and students using? (East Africa phone market)
 - [x] ask about color scheme and buttons shape, etc
+- [ ] server - on prem (raspberry?) or cloud. where is the current one deployed?
+- [ ] permissions - can all teachers modify all quizzes?
+- [ ] is it ok if the results can only be viewed remotely?
+
+## research
+- [ ] how to put the results into Google Sheets programatically?
+- [ ] 
 
 # Frontend
 - [x] add more callbacks
 
 ## style
 - [ ] mobile first
-- [ ] fix new quiz creation colors
+- [ ] fix new quiz creation
 - [ ] should be pretty - using Directed assets from hoole drive
 
 # Backend
