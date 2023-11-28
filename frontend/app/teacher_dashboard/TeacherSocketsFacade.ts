@@ -9,8 +9,8 @@ export class TeacherSocketFacade{
     this.socketClient = socket;
     this.teacherId = teacherId;
   }
-  public nextQuestion() {
 
+  public nextQuestion() {
     this.socketClient.emit('new question')
   }
 

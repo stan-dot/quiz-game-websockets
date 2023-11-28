@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { QuizData } from "../types";
 import { useQuizzesHook } from "./useQuizzesHook";
 import QuizTable from "./QuizTable";
-import { Modal } from "./Modal";
+import { Modal } from "../shared-components/Modal";
 import QuizCreationComponent from "./QuizCreationComponent";
 
 function QuizzesOverview() {

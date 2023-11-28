@@ -76,9 +76,9 @@ const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
           onChange={(e) => setQuizTitle(e.target.value)}
         />
       </div>
-      <table>
+      <table className="rounded m-2 p-2">
         <thead>
-          <tr>
+          <tr className="bg-secondary">
             <th>Question</th>
             <th>Answer 1</th>
             <th>Answer 2</th>
@@ -130,8 +130,10 @@ const QuizCreationComponent: React.FC<QuizCreationProps> = ({ addNewQuiz }) => {
           ))}
         </tbody>
       </table>
-      <button type="button" onClick={addQuestion}>Add Question</button>
-      <button type="submit">Create Quiz</button>
+      <div id="lowerButtonsArea" className="flex flex-row space-between-2">
+        <button type="button" onClick={addQuestion}>Add Question</button>
+        <button type="submit">Create Quiz</button>
+      </div>
     </form>
   );
 };
