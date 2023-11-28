@@ -36,6 +36,7 @@ type Answer struct {
 type LeaderBoardStatus struct {
 	Profiles []LeaderBoardRow `json:"profiles"`
 	QuizName string           `json:"quiz_name"`
+	Final    bool             `json:"final"`
 }
 
 type LeaderBoardRow struct {
@@ -99,6 +100,7 @@ func setupRouter() *gin.Engine {
 		c.JSON(http.StatusOK, gin.H{"text": "updated"})
 	})
 
+	// todo add a req containing the quiz
 	r.GET("/socket", func(c *gin.Context) {
 		conn, _, _, err := ws.UpgradeHTTP(c.Request, c.Writer)
 		if err != nil {
@@ -107,7 +109,17 @@ func setupRouter() *gin.Engine {
 			// todo not sure is ok
 			return
 		}
+		// todo there's one goroutine for every message type
 
+		// order of events
+
+		// init an array of scores (a copy of the leaderboard)
+		// broadcast the new quiz
+		// for every question until the last one:
+		// wait until time passes or everyone responds
+		// broadcast leaderboard
+		// when all questions are done, send the leaderboard with the final flag as the finished message.
+		// when done, send the results to the scores service
 		go func() {
 			for {
 				defer conn.Close()
@@ -125,6 +137,7 @@ func setupRouter() *gin.Engine {
 					return
 				}
 				documentCond.Broadcast()
+				// todo need to figure out the non-broadcast option
 				documentMutex.Unlock()
 			}
 		}()

@@ -21,6 +21,7 @@ export type StudentAnswer = {
 export type LeaderBoardStatus = {
   quizName: string;
   rows: LeaderBoardRow[];
+  final?: boolean;
 };
 
 export type LeaderBoardRow = {

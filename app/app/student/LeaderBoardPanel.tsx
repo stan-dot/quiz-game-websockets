@@ -1,17 +1,20 @@
 import React from "react";
 import { LeaderBoardStatus } from "../types";
 
+type LeaderBoardPanelProps = {
+  leaderBoard: LeaderBoardStatus;
+  studentId: string;
+  final?: boolean;
+};
+
 function LeaderBoardPanel(
-  { leaderBoard, studentId }: {
-    leaderBoard: LeaderBoardStatus;
-    studentId: string;
-  },
+  { leaderBoard, studentId, final }: LeaderBoardPanelProps,
 ) {
   return (
     <div>
       LeaderBoardPanel
       <div>
-        <h3>{leaderBoard.quizName}</h3>
+        <h3>{final ?? "FINAL! "}{leaderBoard.quizName}</h3>
         <ol>
           {leaderBoard.rows.map((r, i) => {
             return (

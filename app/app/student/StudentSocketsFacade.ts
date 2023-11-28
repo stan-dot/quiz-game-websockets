@@ -6,6 +6,8 @@ interface ServerToClientEvents {
   new_question: (q: Question) => void;
   leaderboard_update: (l: LeaderBoardStatus) => void;
   correctAnswer: (a: { index: number }) => void;
+  finish: (l: LeaderBoardStatus) => void;
+  // todo more events - new player joined event
 }
 
 interface ClientToServerEvents {
@@ -13,24 +15,30 @@ interface ClientToServerEvents {
   answer: (a: StudentAnswer) => void;
 }
 
+export type SocketCallbackOptions = {
+  onNewQuiz: () => void;
+  onLeaderBoard: (l: LeaderBoardStatus) => void;
+  onNewQuestion: (q: Question) => void;
+  onCorrectAnswer: () => void;
+  onFinish: (l: LeaderBoardStatus) => void;
+};
+
 type StudentSocketFacadeConstructionProps = {
   socketUrl: string;
   studentId: string;
-  callbacks?: {
-    onNewQuiz: () => void;
-    onLeaderBoard: () => void;
-    onNewQuestion: () => void;
-    onCorrectAnswer: () => void;
-  };
+  quizId: string;
+  callbacks?: SocketCallbackOptions;
 };
 
 export class StudentSocketFacade {
   private socketClient: Socket<ServerToClientEvents, ClientToServerEvents>;
   private studentId: string;
+  private quizId: string;
 
   constructor(
-    { socketUrl, studentId }: StudentSocketFacadeConstructionProps,
+    { socketUrl, studentId, quizId }: StudentSocketFacadeConstructionProps,
   ) {
+    this.quizId = quizId;
     const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
       socketUrl,
     );
