@@ -37,7 +37,7 @@
 - [ ] connect to Mongo via Prisma with hooks
 
 ## go backend
-- [ ] sortout the go path issue
+- [x] sortout the go path issue
 - [ ] write goroutines for different socket connections
 - [ ] write the server internals in another package and import funcs as necessary
 - [ ] magic link login for all - there was Web Dev Simplified video about this https://www.youtube.com/watch?v=b6qHfPdv4Y8
