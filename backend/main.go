@@ -4,15 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"log"
-	"math"
-	"net/http"
-	"sync"
-
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/gobwas/ws"
 	"github.com/gobwas/ws/wsutil"
+	"log"
+	"math"
+	"net/http"
+	"sync"
 )
 
 type Question struct {
@@ -106,7 +105,6 @@ func setupRouter() *gin.Engine {
 		if err != nil {
 			log.Println("error with WebSOcket: ", err)
 			c.Writer.WriteHeader(http.StatusMethodNotAllowed)
-			// todo not sure is ok
 			return
 		}
 		// todo there's one goroutine for every message type
@@ -121,6 +119,8 @@ func setupRouter() *gin.Engine {
 		// broadcast leaderboard
 		// when all questions are done, send the leaderboard with the final flag as the finished message.
 		// when done, send the results to the scores service
+		// todo in unmarshal this will do the read of any message and there the decision what to do
+		// the new events are sent when the teacher sends them
 		go func() {
 			for {
 				defer conn.Close()
@@ -142,6 +142,7 @@ func setupRouter() *gin.Engine {
 				documentMutex.Unlock()
 			}
 		}()
+
 		go func() {
 			defer conn.Close()
 

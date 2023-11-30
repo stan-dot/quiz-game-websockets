@@ -1,6 +1,6 @@
 ## questions - put all into notes on resolution for the track record
-- [ ] what devices are the teachers and students using? (East Africa phone market)
 - [x] ask about color scheme and buttons shape, etc
+- [ ] what devices are the teachers and students using? (East Africa phone market)
 - [ ] server - on prem (raspberry?) or cloud. where is the current one deployed?
 - [ ] permissions - can all teachers modify all quizzes?
 - [ ] is it ok if the results can only be viewed on the other platform (g docs?)
@@ -8,9 +8,8 @@
 - [ ] does the teacher send when ne
 
 ## research
-- [ ] how to put the results into Google Sheets programatically?
-- [ ] on the general process of migrating from a google spreadsheets to a normal database - there's a track record on that
-- [ ] check go sockets scalability vertically
+- [x] on the general process of migrating from a google spreadsheets to a normal database - there's a track record on that
+- [x] check go sockets scalability vertically - not a worry
 
 ## warmup priority todo
 - [ ] fix the go and the sockets responses
@@ -35,6 +34,7 @@
 - [x] mongodb https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/ - already in mflix
 - [x] add quiz representation
 - [ ] connect to Mongo via Prisma with hooks
+- [ ] how to put the results into Google Sheets programatically? https://developers.google.com/sheets/api/guides/concepts
 
 ## go backend
 - [x] sortout the go path issue
