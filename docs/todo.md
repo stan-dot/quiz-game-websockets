@@ -32,7 +32,9 @@
 - [x] mongodb https://www.mongodb.com/developer/languages/javascript/nextjs-with-mongodb/ - already in mflix
 - [x] add quiz representation
 - [ ] add sessions https://github.com/gin-contrib/sessions
-- [ ] connect to Mongo via Prisma with hooks
+- [ ] connect to Mongo via Prisma with hooks https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/mongodb/connect-your-database-typescript-mongodb
+https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/mongodb/introspection-typescript-mongodb
+
 - [ ] how to put the results into Google Sheets programatically? https://developers.google.com/sheets/api/guides/concepts
 
 ## go backend
