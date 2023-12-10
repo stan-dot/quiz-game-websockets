@@ -1,4 +1,4 @@
-import { QuizData } from "@/app/types";
+import { QuizData } from "@/app/webSocketTypes";
 import Link from "next/link";
 import QuizCard from "../../QuizCard";
 

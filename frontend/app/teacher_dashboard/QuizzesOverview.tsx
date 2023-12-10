@@ -1,19 +1,20 @@
 "use client";
 import React, { useState } from "react";
-import { QuizData } from "../types";
-import { useQuizzesHook } from "./useQuizzesHook";
+import { useQuizzesHook } from "../../hooks/useQuizzesHook";
 import QuizTable from "./QuizTable";
 import { Modal } from "../shared-components/Modal";
 import QuizCreationComponent from "./QuizCreationComponent";
+import { addNewQuiz } from "../../lib/addNewQuiz";
+import { Prisma } from "@prisma/client";
 
 function QuizzesOverview() {
-  const quizzes: QuizData[] = useQuizzesHook();
+  const quizzes = useQuizzesHook();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleSubmit = (quiz: QuizData) => {
+  const handleSubmit = (quiz) => {
     handleCloseModal();
     addNewQuiz(quiz);
   };
@@ -31,8 +32,3 @@ function QuizzesOverview() {
 }
 
 export default QuizzesOverview;
-
-function addNewQuiz(quiz: QuizData) {
-  // todo must use Mongo db connector here. or a facade
-  throw new Error("Function not implemented.");
-}

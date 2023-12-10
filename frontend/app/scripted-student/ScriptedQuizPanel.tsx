@@ -1,18 +1,16 @@
 "use client";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
-import { useLeaderboardResults } from "@/hooks/useLeaderboardResults";
 import {
   SocketCallbackOptions,
   StudentSocketFacade,
 } from "../student/StudentSocketsFacade";
-import { LeaderBoardStatus, Question } from "../types";
 import LeaderBoardPanel from "../student/LeaderBoardPanel";
 import QuestionPanel from "../student/QuestionPanel";
 import WaitForOtherAnswers from "../student/WaitForOtherAnswers";
 import WaitForStartScreen from "../student/WaitForStartScreen";
-import { useQuiz } from "@/hooks/useQuizById";
-import { mockQuizzes } from "@/data/mockQuizzes";
+import { useQuizById } from "@/hooks/useQuizById";
+import { LeaderBoardStatus, Prisma, Question } from "@prisma/client";
 
 type QuizState =
   | "wait for start"
@@ -22,22 +20,18 @@ type QuizState =
   | "finished";
 
 const defaultLeaderboard: LeaderBoardStatus = {
-  quizName: "Loading results...",
-  rows: [],
+  id: "",
+  QuizName: "Loading results",
+  Final: false,
 };
 
-const defaultQuestion: Question = {
-  text: "Waiting for the question...",
-  answers: [],
-  correctAnswer: 0,
+const defaultQuestion: Prisma.QuestionCreateInput = {
+  Text: "Waiting for the question...",
+  Answers: [],
+  CorrectAnswer: 0,
 };
 
 function ScriptedQuizPanel() {
-  // todo hardcoded bits
-  const studentId = "1";
-  const socketUrl = "http://localhost:8000";
-  const quizId = "4";
-  console.log("id , socket: ", studentId, socketUrl);
   const testingState: QuizState = "active question";
   const [quizState, setQuizState] = useState<QuizState>(testingState);
   const [lastLeaderboard, setLastLeaderboard] = useState<LeaderBoardStatus>(
@@ -47,8 +41,12 @@ function ScriptedQuizPanel() {
     mockQuizzes[0].questions[0],
   );
 
-  // todo this is temporary
-  const quiz = useQuiz(quizId);
+  // todo hardcoded bits
+  const studentId = "1";
+  const socketUrl = "http://localhost:8000";
+  const quizId = "4";
+
+  const quiz = useQuizById(quizId);
   const socketFacade = useMemo(() => {
     const callbacks: SocketCallbackOptions = {
       onNewQuiz: function (): void {

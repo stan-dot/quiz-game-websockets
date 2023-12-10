@@ -9,3 +9,51 @@ datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
 }
+
+model Question {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  Text          String
+  Answers       String[]
+  ImageUrl      String
+  CorrectAnswer Int
+  Quiz          Quiz?    @relation(fields: [quizId], references: [id])
+  quizId        String?  @db.ObjectId
+}
+
+model Quiz {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  Title       String
+  Questions   Question[]
+  ClassData   ClassData? @relation(fields: [classDataId], references: [id])
+  classDataId String?    @db.ObjectId
+}
+
+model LeaderBoardStatus {
+  id       String           @id @default(auto()) @map("_id") @db.ObjectId
+  Profiles LeaderBoardRow[]
+  QuizName String
+  Final    Boolean
+}
+
+model LeaderBoardRow {
+  id                  String             @id @default(auto()) @map("_id") @db.ObjectId
+  StudentId           String
+  Points              Int
+  LeaderBoardStatus   LeaderBoardStatus? @relation(fields: [leaderBoardStatusId], references: [id])
+  leaderBoardStatusId String?            @db.ObjectId
+}
+
+model Student {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  Name        String
+  Email       String
+  Nick        String
+  ClassData   ClassData? @relation(fields: [classDataId], references: [id])
+  classDataId String?    @db.ObjectId
+}
+
+model ClassData {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  Students    Student[]
+  DoneQuizzes Quiz[]
+}

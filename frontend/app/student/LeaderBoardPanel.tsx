@@ -1,5 +1,5 @@
 import React from "react";
-import { LeaderBoardStatus } from "../types";
+import { LeaderBoardStatus } from "../webSocketTypes";
 
 type LeaderBoardPanelProps = {
   leaderBoard: LeaderBoardStatus;

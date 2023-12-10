@@ -1,5 +1,3 @@
-
-
-export function useClassById(id:string) {
-
+export function useClassById(id: string) {
+  prisma?.quiz.findFirst({ select: { id: id } });
 }

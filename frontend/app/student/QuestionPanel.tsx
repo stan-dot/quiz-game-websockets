@@ -1,7 +1,7 @@
 import React from "react";
-import { Question } from "../types";
 import { StudentSocketFacade } from "./StudentSocketsFacade";
 import Image from "next/image";
+import { Question } from "@prisma/client";
 
 const defaultImageUrl = "/placeholder-image-square.jpg";
 const fourColors: string[] = ["#990000", "#009900", "#000099", "#B0B000"];
@@ -25,10 +25,10 @@ function QuestionPanel(
         />
       </div>
       <p className="font-bold">
-        {question.text}
+        {question.Text}
       </p>
       <div className="w-full h-full grid grid-cols-2">
-        {question.answers.map((a, i) => {
+        {question.Answers.map((a, i) => {
           return (
             <button
               className="w-[50vw] h-[50vh] m-0"

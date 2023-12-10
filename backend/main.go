@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-contrib/cors"
-	"github.com/gin-contrib/sessions"
+	// "github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"github.com/gobwas/ws"
 	"github.com/gobwas/ws/wsutil"
@@ -58,7 +58,7 @@ var leaderboard = LeaderBoardStatus{
 type QuizState struct {
 	Quiz          Quiz   `json:"quiz"`
 	QuestionIndex int32  `json:"question_index"`
-	TeacherId     string `json:"teacher_id`
+	TeacherId     string `json:"teacher_id"`
 }
 
 var initialQuiz = Quiz{
@@ -82,14 +82,6 @@ var quizStateCond = sync.NewCond(&quizStateMutex)
 
 var leaderboardMutex sync.Mutex
 var leaderboardCond = sync.NewCond(&leaderboardMutex)
-
-var document = Document{
-	Title: "Test document",
-	Body:  "Hello world\n here is a second line",
-}
-
-var documentMutex sync.Mutex
-var documentCond = sync.NewCond(&documentMutex)
 
 type MessageType int
 
@@ -140,12 +132,12 @@ func setupRouter() *gin.Engine {
 					log.Println("error endoing document", err)
 					return
 				}
+				leaderboardMutex.Lock()
 
-				documentMutex.Lock()
 				var result Event
 				err = json.Unmarshal(data, result)
 				if err != nil {
-					documentMutex.Unlock()
+					leaderboardMutex.Unlock()
 					log.Println("error unmarshalling document: ", err)
 					return
 				}
@@ -164,8 +156,8 @@ func setupRouter() *gin.Engine {
 					// calculate a new leaderboard
 				}
 
-				documentCond.Broadcast()
-				documentMutex.Unlock()
+				leaderboardCond.Broadcast()
+				leaderboardMutex.Unlock()
 			}
 		}()
 

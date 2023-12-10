@@ -1,12 +1,12 @@
 import React from "react";
-import { QuizData } from "../types";
 import { redirect } from "next/navigation";
 import { PageHeader } from "../shared-components/PageHeader";
 import Link from "next/link";
+import { Quiz } from "@prisma/client";
 
-function QuizTable({ quizzes }: { quizzes: QuizData[] }) {
+function QuizTable({ quizzes }: { quizzes: Quiz[] }) {
   const total = quizzes.reduce(
-    (p: number, c: QuizData) => p + c.questions.length,
+    (p: number, c) => p + c.questions.length,
     0,
   );
 

@@ -1,10 +1,10 @@
 "use client";
-import { QuizData } from "@/app/types";
 import React from "react";
 import { TeacherSocketFacade } from "../TeacherSocketsFacade";
+import { Quiz } from "@prisma/client";
 
 type QuizStateTeacherEnd = {
-  data: QuizData;
+  data: Quiz;
   currentQuestion: number;
   studentAnswerStatus: { studentId: string; done: boolean }[];
   // todo that must cooperate with the backend server
@@ -13,9 +13,8 @@ type QuizStateTeacherEnd = {
 // so it looks that if individual student lookups arent' that important, a list is better fair enough
 const exampleState: QuizStateTeacherEnd = {
   data: {
-    title: "",
-    _id: "",
-    questions: [],
+    Title: "",
+    id: "",
   },
   currentQuestion: 0,
   studentAnswerStatus: [],
@@ -29,7 +28,7 @@ function MonitorQuiz() {
       MonitorQuiz
       <div id="progressBar">
         {exampleState.currentQuestion} out of{" "}
-        {exampleState.data.questions.length}
+        {/* {exampleState.data.questions.length} */}
       </div>
       <div id="studentTimingTable">
         <div>

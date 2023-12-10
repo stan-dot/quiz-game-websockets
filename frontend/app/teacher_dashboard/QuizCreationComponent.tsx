@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Question } from "../types";
+import { Question } from "../webSocketTypes";
 
 export type QuizInit = {
   title: string;

@@ -6,9 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "migrate":"npx prisma db push"
   },
   "dependencies": {
+    "@prisma/client": "^5.7.0",
     "@types/socket.io": "^3.0.2",
     "axios": "^1.6.1",
     "mongodb": "6.2",

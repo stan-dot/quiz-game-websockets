@@ -1,11 +1,11 @@
+import { Prisma, Quiz } from "@prisma/client";
 import React from "react";
-import { QuizData } from "../types";
 
-function QuizCard({ quiz }: { quiz: QuizData }) {
+function QuizCard({ quiz }: { quiz: Quiz }) {
   return (
     <div>
-      <p>{quiz.title}</p>
-      <p>Number of questions: {quiz.questions.length}</p>
+      <p>{quiz.Title}</p>
+      <p>Number of questions: {quiz.Questions.length}</p>
       #questionsDisplay.m-2.p-2
     </div>
   );
