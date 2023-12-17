@@ -1,5 +1,5 @@
+import { LeaderBoardStatus } from "@prisma/client";
 import React from "react";
-import { LeaderBoardStatus } from "../webSocketTypes";
 
 type LeaderBoardPanelProps = {
   leaderBoard: LeaderBoardStatus;
@@ -14,9 +14,9 @@ function LeaderBoardPanel(
     <div>
       LeaderBoardPanel
       <div>
-        <h3>{final ?? "FINAL! "}{leaderBoard.quizName}</h3>
+        <h3>{final ?? "FINAL! "}{leaderBoard.QuizName}</h3>
         <ol>
-          {leaderBoard.rows.map((r, i) => {
+          {leaderBoard.QuizName.map((r, i) => {
             return (
               <li key={`student-row-${i}`}>
                 {r.studentId === studentId && <p>you</p>}

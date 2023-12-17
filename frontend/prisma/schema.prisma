@@ -28,12 +28,12 @@ model Quiz {
   classDataId String?    @db.ObjectId
 }
 
-
 model LeaderBoardStatus {
-  id       String           @id @default(auto()) @map("_id") @db.ObjectId
-  Profiles LeaderBoardRow[]
-  QuizName String
-  Final    Boolean
+  id              String           @id @default(auto()) @map("_id") @db.ObjectId
+  Profiles        LeaderBoardRow[]
+  CurrentQuestion Int
+  QuizName        String
+  Final           Boolean
 }
 
 model LeaderBoardRow {

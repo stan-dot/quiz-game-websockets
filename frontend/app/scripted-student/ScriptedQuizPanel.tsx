@@ -10,7 +10,7 @@ import QuestionPanel from "../student/QuestionPanel";
 import WaitForOtherAnswers from "../student/WaitForOtherAnswers";
 import WaitForStartScreen from "../student/WaitForStartScreen";
 import { useQuizById } from "@/hooks/useQuizById";
-import { LeaderBoardStatus, Prisma, Question } from "@prisma/client";
+import { LeaderBoardStatus, Prisma, Question, Quiz } from "@prisma/client";
 
 type QuizState =
   | "wait for start"

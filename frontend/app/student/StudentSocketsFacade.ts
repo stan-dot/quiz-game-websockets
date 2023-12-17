@@ -23,7 +23,7 @@ export type SocketCallbackOptions = {
   onFinish: (l: LeaderBoardStatus) => void;
 };
 
-type StudentSocketFacadeConstructionProps = {
+export type StudentSocketFacadeConstructionProps = {
   socketUrl: string;
   studentId: string;
   quizId: string;

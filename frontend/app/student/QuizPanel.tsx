@@ -70,19 +70,6 @@ function QuizPanel() {
       <h2>
         QuizPanel
       </h2>
-
-      <h2>
-        TextEditor
-      </h2>
-      <textarea
-        onChange={(e) => {
-          ws !== null && ws.send(JSON.stringify({
-            "title": "Test document",
-            "body": e.target.value,
-          }));
-        }}
-        value={text}
-      />
       <div>
         {componentToRender}
       </div>
