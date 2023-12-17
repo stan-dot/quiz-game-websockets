@@ -9,12 +9,11 @@ import WaitForStartScreen from "../student/WaitForStartScreen";
 
 // NOTE - for testing purposes
 const s: StudentSocketFacadeConstructionProps = {
-  socketUrl: "",
+  socketUrl: process.env.SOCKET_URL!,
   studentId: "1",
   quizId: "4",
 };
 
-// todo state must flow deterministically from the sockets, it is useless to keep another variable just for that
 function NewScriptedQuiz() {
   let facade = useRef<StudentSocketFacade | undefined>();
   useEffect(() => {
