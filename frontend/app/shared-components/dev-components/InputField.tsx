@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 function InputField({ socket }: { socket: any }) {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState<string>("");
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     socket.emit("input-change", e.target.value);
   };

@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { ResponseData } from "../api/hello/route";
+import { ResponseData } from "../../api/hello/route";
 import axios from "axios";
 
-function GetHello() {
+function TestRestApi() {
   const [helloText, setHelloTest] = useState<string>("waiting for hello!");
 
   useEffect(() => {
@@ -17,15 +17,11 @@ function GetHello() {
 
   return (
     <div>
-      GetHello
-
-      <div>
-        <p>
-          {helloText}
-        </p>
-      </div>
+      <p>
+        {helloText}
+      </p>
     </div>
   );
 }
 
-export default GetHello;
+export default TestRestApi;

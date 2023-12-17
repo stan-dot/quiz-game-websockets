@@ -28,6 +28,7 @@ model Quiz {
   classDataId String?    @db.ObjectId
 }
 
+
 model LeaderBoardStatus {
   id       String           @id @default(auto()) @map("_id") @db.ObjectId
   Profiles LeaderBoardRow[]

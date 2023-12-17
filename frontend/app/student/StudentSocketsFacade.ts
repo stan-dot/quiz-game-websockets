@@ -1,8 +1,8 @@
+import { Prisma } from "@prisma/client";
 import { io, Socket } from "socket.io-client";
-import { LeaderBoardStatus, Question, QuizData, StudentAnswer } from "../webSocketTypes";
 
 interface ServerToClientEvents {
-  quiz: (m: QuizData) => void;
+  quiz: (m: Prisma.ModelName) => void;
   new_question: (q: Question) => void;
   leaderboard_update: (l: LeaderBoardStatus) => void;
   correctAnswer: (a: { index: number }) => void;

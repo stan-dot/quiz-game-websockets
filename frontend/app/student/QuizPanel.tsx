@@ -6,7 +6,6 @@ import QuestionPanel from "./QuestionPanel";
 import { StudentSocketFacade } from "./StudentSocketsFacade";
 import WaitForStartScreen from "./WaitForStartScreen";
 import WaitForOtherAnswers from "./WaitForOtherAnswers";
-import { useLeaderboardResults } from "@/hooks/useLeaderboardResults";
 
 export type QuizState =
   | "wait for start"
@@ -26,36 +25,13 @@ function QuizPanel() {
     return new StudentSocketFacade({ socketUrl, studentId });
   }, [socketUrl, studentId]); // Dependencies on which the instance should be recreated
 
-  const [ws, setWs] = useState<WebSocket | null>(null);
   const [text, setText] = useState<string>("");
   const [quizState, setQuizState] = useState<QuizState>("wait for start");
-
-  useEffect(() => {
-    fetch("http://localhost:8000/handler").then((x) => x.json()).then((x) =>
-      setText(x)
-    ).catch((e) => {
-      console.error(" failed to fetch: ", e);
-    });
-    return () => {
-      ws?.close(); // NOTE important to close
-    };
-  }, [ws]);
-
-  useEffect(() => {
-    const newWs = new WebSocket("ws://localhost:8000/socket");
-    newWs.onerror = (err) => console.error(err);
-    newWs.onopen = () => setWs(newWs);
-    newWs.onmessage = (msg) => setText(JSON.parse(msg.data));
-    return () => {
-      // newWs.close() // this was causing issues
-    };
-  }, []);
+  const leaderBoard = useLeaderboardResults("4");
 
   if (!params.has("student_id") || !params.has("socket_url")) {
     return <p>error</p>;
   }
-
-  const leaderBoard = useLeaderboardResults("4");
 
   let componentToRender;
   switch (quizState) {
